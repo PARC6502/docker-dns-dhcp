@@ -14,8 +14,8 @@ services:
       options:
         max-size: 100m
     volumes:
-      - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
-      - ./dnsmasq/dnsmasq.log:/var/log/dnsmasq.log
-      - ./dnsmasq/static_hosts:/etc/hosts
-      - ./dnsmasq/ad.list:/etc/ad.list
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+      - ./dnsmasq.log:/var/log/dnsmasq.log
+      - ./static_hosts:/etc/hosts
+      - ./ad.list:/etc/ad.list
       - /etc/localtime:/etc/localtime:ro

@@ -29,7 +29,10 @@ git clone https://github.com/PARC6502/docker-dns-dhcp.git && cd docker-dns-dhcp
 2. Make copies of example files
 
 ```bash
-cp dnsmasq.example.conf dnsmasq.conf && cp static_host.example static_hosts && cp ad.example.list ad.list
+cp dnsmasq.example.conf dnsmasq.conf \
+&& cp static_host.example static_hosts \
+&& cp ad.example.list ad.list \
+&& touch dnsmasq.log
 ```
 
 3. Set the domain(s) and IP address(es) in the `dnsmasq.conf` file
