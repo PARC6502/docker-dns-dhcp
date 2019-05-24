@@ -16,6 +16,8 @@ It uses the following ports:
 
 Currently this is running in "host" network mode, so it's not really as isolated as it could be, and there could be port conflicts. However this was the easiest option for getting the DHCP server to work in a docker container. Another option maybe using a [macvlan network](https://docs.docker.com/network/macvlan/). [This page](https://docs.pi-hole.net/docker/DHCP/) contains a brief discussion of the different options.
 
+Note that "bridge" mode works perfectly fine if all you need is a DNS server, and is preferable in that case. You also don't need NET_ADMIN capability if you're just running DNS.
+
 # Usage
 
 1. Clone this repo and cd into it
