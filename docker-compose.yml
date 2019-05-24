@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dnsmasq:
+    image: jpillora/dnsmasq
+    container_name: dnsmasq
+    restart: unless-stopped
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - HTTP_USER=foo
+      - HTTP_PASS=bar
+    logging:
+      options:
+        max-size: 100m
+    volumes:
+      - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./dnsmasq/dnsmasq.log:/var/log/dnsmasq.log
+      - ./dnsmasq/static_hosts:/etc/hosts
+      - ./dnsmasq/ad.list:/etc/ad.list
+      - /etc/localtime:/etc/localtime:ro
