@@ -12,13 +12,13 @@ It uses the following ports:
 - 53 DNS
 - 67 DHCP
 
-# Caveats
+## Caveats
 
 Currently this is running in "host" network mode, so it's not really as isolated as it could be, and there could be port conflicts. However this was the easiest option for getting the DHCP server to work in a docker container. Another option maybe using a [macvlan network](https://docs.docker.com/network/macvlan/). [This page](https://docs.pi-hole.net/docker/DHCP/) contains a brief discussion of the different options.
 
 Note that "bridge" mode works perfectly fine if all you need is a DNS server, and is preferable in that case. You also don't need NET_ADMIN capability if you're just running DNS.
 
-# Usage
+## Usage
 
 1. Clone this repo and cd into it
 
@@ -35,7 +35,9 @@ cp dnsmasq.example.conf dnsmasq.conf \
 && touch dnsmasq.log
 ```
 
-3. Set the domain(s) and IP address(es) in the `dnsmasq.conf` file
+3. Set a static IP for your server machine. You can either do this from the machine itself, setting an IP outside of the DHCP range, or from the `dnsmasq.conf` file
+
+4. Set the domain(s) and IP address(es) in the `dnsmasq.conf` file
 
 This is the line you want to change
 
@@ -43,17 +45,21 @@ This is the line you want to change
 address=/.local.cloud/192.168.1.3
 ```
 
-4. (Optional) You can set static IPs based on hostname or MAC address in `dnsmasq.conf`
+5. (Optional) You can set static IPs based on hostname or MAC address in `dnsmasq.conf`
 
-5. (Optional) Add static hosts to your static_hosts file (could point to different servers, android tv, etc)
+6. (Optional) Add static hosts to your static_hosts file (could point to different servers, android tv, etc)
 
-6. (Optional) You can add sites you'd like to block in `ad.list` in the format shown below, I'm using [this file](https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts) on my network
+7. (Optional) You can add sites you'd like to block in `ad.list` in the format shown below, I'm using [this file](https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts) on my network
 
 ```
 0.0.0.0 facebook.com
 ```
 
-7. Start up the container
+8. Turn off DHCP in your router
+
+   For this container to work it's important that it's not clashing with another DHCP server. You need to access your router, find the DHCP option and turn it off. Take
+
+9. Start up the container
 
 ```bash
 sudo docker-compose up -d
